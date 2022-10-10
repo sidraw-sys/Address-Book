@@ -26,7 +26,7 @@ class Contact(Base):
     latitude=Column(Float,nullable=False)
     longitude=Column(Float,nullable=False)
 
-    # Foreign key specifying relationship with the User model
+    # Foreign key specifying relationship with the User model.
     owner_id=Column(Integer,ForeignKey("users.id",ondelete="CASCADE"),nullable=False)
 
 
