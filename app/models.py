@@ -2,7 +2,7 @@
 Tables created inside the database.
 """
 
-from sqlalchemy import Column, Integer, String, TIMESTAMP, ForeignKey
+from sqlalchemy import Column, Integer, String, TIMESTAMP, ForeignKey, Float
 from .database import Base
 from sqlalchemy.sql.expression import text
 
@@ -19,9 +19,14 @@ class Contact(Base):
     city=Column(String,nullable=False)
     state=Column(String,nullable=False)
     zipcode=Column(String,nullable=False)
+    country=Column(String,nullable=False)
     created_at=Column(TIMESTAMP(timezone=True),nullable=False,server_default=text('now()'))
+    
+    # will store latitude and longitude from the provided address details, logic written in Path operations (routers/addresses.py)
+    latitude=Column(Float,nullable=False)
+    longitude=Column(Float,nullable=False)
 
-    # Foreign key specifying relationship with User model
+    # Foreign key specifying relationship with the User model
     owner_id=Column(Integer,ForeignKey("users.id",ondelete="CASCADE"),nullable=False)
 
 

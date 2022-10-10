@@ -19,29 +19,22 @@ class UserResponse(BaseModel):
     class Config:
         orm_mode = True
 
-class Contact(BaseModel):
+class BaseContact(BaseModel):
     # schema model to be followed while creating contact
     f_name:str
     l_name:str
-    email:str
+    email:EmailStr
     phone:str
     address:str
     city:str
     state:str
     zipcode:str
+    country:str
     
 
-class ContactResponse(BaseModel):
-    # schema model to be followed while fetching the contact from API
+class ContactResponse(BaseContact):
+    # schema model to be followed while fetching the contact from API, here we have extended the BaseContact class to reduce the repeating code.
     id:int
-    f_name:str
-    l_name:str
-    email:str
-    phone:str
-    address:str
-    city:str
-    state:str
-    zipcode:str
     created_at:datetime
     owner_id:int
 
@@ -64,6 +57,8 @@ class TokenData(BaseModel):
     email:EmailStr
 
 class RetreiveContacts(BaseModel):
-    # schema model to retreive contacts within a given distance range.
-    distance:int
-    own_location:str 
+    # schema model to retreive contacts within a given distance range, requestor will have to provide his/her current location
+    radius_to_check_in_kms:int
+    current_city:str
+    current_zipcode:str
+    current_country:str
