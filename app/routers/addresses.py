@@ -48,6 +48,13 @@ def get_single_contact(id:int,db: Session = Depends(get_db), current_user: schem
 @router.post('/', status_code=status.HTTP_201_CREATED, response_model=schemas.ContactResponse)
 def create_contact(contact:schemas.BaseContact, db: Session = Depends(get_db), current_user: schemas.TokenData = Depends(oauth2.get_current_user)):
     # creating a new contact in the database
+
+    contact_check=db.query(models.Contact).filter(models.Contact.email==contact.email).filter(models.Contact.owner_id == current_user.id).first()
+
+    #checking if contact with the provided email already exists or not.
+    if contact_check:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=f'Contact with email id "{contact.email}" already exists in the address book.')
+
     # storing a string combined up from city,zipcode,country into address variable.
     address=contact.city+','+contact.zipcode+','+contact.country
     geolocator = Nominatim(user_agent="address-book-app")
