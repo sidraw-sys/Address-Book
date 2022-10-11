@@ -6,10 +6,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-#configured postgres database, Please ensure you have pgadmin4 (kindly refer to README file for the credential you can use to connect API to the postgres database)
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:password123@localhost:5432/postgres"
+# integrated sqlite3 database with fastapi
+SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+#engine = create_engine(SQLALCHEMY_DATABASE_URL)
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

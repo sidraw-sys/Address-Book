@@ -2,8 +2,9 @@
 Tables created inside the database.
 """
 
-from sqlalchemy import Column, Integer, String, TIMESTAMP, ForeignKey, Float
-from .database import Base
+from sqlalchemy import Column, Integer, String, ForeignKey, Float,DateTime
+from app.database import Base
+from sqlalchemy.sql import func
 from sqlalchemy.sql.expression import text
 
 class Contact(Base):
@@ -20,7 +21,7 @@ class Contact(Base):
     state=Column(String,nullable=False)
     zipcode=Column(String,nullable=False)
     country=Column(String,nullable=False)
-    created_at=Column(TIMESTAMP(timezone=True),nullable=False,server_default=text('now()'))
+    time_created = Column(DateTime(timezone=True), server_default=func.now())
     
     # will store latitude and longitude from the provided address details, logic written in Path operations (routers/addresses.py)
     latitude=Column(Float,nullable=False)
@@ -36,4 +37,4 @@ class User(Base):
     id=Column(Integer,primary_key=True,nullable=False)
     email=Column(String,nullable=False,unique=True)
     password=Column(String,nullable=False)
-    created_at=Column(TIMESTAMP(timezone=True),nullable=False,server_default=text('now()'))
+    time_created = Column(DateTime(timezone=True), server_default=func.now())

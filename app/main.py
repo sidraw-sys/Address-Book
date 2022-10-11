@@ -3,9 +3,9 @@ Main file
 """
 
 from fastapi import FastAPI
-from . import models
-from .database import engine
-from .routers import addresses, auth, users
+from app import models
+from app.database import engine
+from app.routers import addresses, auth, users
 
 # below command is tied up with our database.py file via an engine and will create tables in our database (whichever db we have configured in database.py)
 models.Base.metadata.create_all(bind=engine)

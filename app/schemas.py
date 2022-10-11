@@ -14,7 +14,7 @@ class UserResponse(BaseModel):
     # schema model to be followed while fetching the user info
     id:int
     email:EmailStr
-    created_at: datetime
+    time_created: datetime
 
     class Config:
         orm_mode = True
@@ -35,7 +35,7 @@ class BaseContact(BaseModel):
 class ContactResponse(BaseContact):
     # schema model to be followed while fetching the contact from API, here we have extended the BaseContact class to reduce the repeating code.
     id:int
-    created_at:datetime
+    time_created:datetime
     owner_id:int
 
     class Config:

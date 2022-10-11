@@ -3,23 +3,14 @@ Hi Team,
 
 I have created the "address-book" api to fullfill the requirements as specified in the assignment but there are few things i would like to highlight before you test out the application.
 
-1 -> Application which I have built is using Postgres database as I have good command over Postgres and have used it in my previous applications as well so had better understanding of integrating it with FastAPI and working with it.
+1 -> I have integrated the fastapi application with SQLite database. When you run the server using uvicorn, the "db file" will automatically get generated alongside the root dir, and you will be able to test the application using the database.
 
 2 -> I have implement the feature of "geocoding" into the api to fetch out the contacts nearby the current user (user just have to provide their current location and the radius they wanna scan for, their is a schema defined for providing input details). I am using GeoPy library to fetch the location of a given address which can subsequently get me the latitude and longitude of that particular address which i can then store in my postgres database. The related logic for this feature as well as how i am calculating the distance and executing other utilities can be found in app/routers/addresses.py , The path operations using this logic are create_contact, update_Contact, retrieve_contacts.
-
-3 -> As the application is not deployed anywhere, I request you to install "PGADMIN4" on your machine to test out the application functionality with database. When you create the server and database on pgadmin4, use below credentials, so when you run the application, it would create tables on the database.
-            Username : postgres
-            Password : password123
-            hostname : localhost
-            port : 5432
-            database name: postgres
-
-4 -> Also attached is the snapshot of "PGadmin4 server settings" on the root page of github url for this code. Kindly refer to it for database setup.
 
 ///
 Steps tp run the application:
 
-Once you have downloaded the code and created a database on PGAdmin4 with the above credentials, kindly follow below steps:
+Once you have downloaded the code from the github repo, kindly follow below steps:
 
 The first step is to install the dependencies which you can find in "requirements.txt" file that I have uploaded alongside the project files.
 Create a virtual environment first and then install dependencies in it.

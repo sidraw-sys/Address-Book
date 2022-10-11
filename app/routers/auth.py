@@ -4,7 +4,7 @@ Module handling logging in for the user
 
 from fastapi import HTTPException,status,Response,Depends,APIRouter
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
-from .. import models,schemas,database,utils,oauth2
+from app import models,schemas,database,utils,oauth2
 from sqlalchemy.orm import Session
 
 

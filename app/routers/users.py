@@ -3,9 +3,9 @@ Module handling all the user endpoints for our address book api to create a new 
 """
 
 from fastapi import HTTPException,status,Depends,APIRouter
-from .. import models,schemas,utils
+from app import models,schemas,utils
 from sqlalchemy.orm import Session
-from ..database import get_db
+from app.database import get_db
 
 router=APIRouter(
     prefix='/users',
